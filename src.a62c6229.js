@@ -1,6 +1,6 @@
 parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"clu1":[function(require,module,exports) {
 
-},{"./../images/demo.jpg":[["demo.090c7c6d.jpg","nKR3"],"nKR3"]}],"rb3b":[function(require,module,exports) {
+},{}],"rb3b":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=t;const e="https://api.themoviedb.org/3/",o="a8df323e9ca157a6f58df54190ee006c";function t(){return fetch(`${e}movie/200?api_key=${o}`).then(e=>e.json()).then(e=>{console.log("ID фильма"),console.log(e)})}t();
 },{}],"ryZl":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=a;const e="https://api.themoviedb.org/3/",t="a8df323e9ca157a6f58df54190ee006c",o=prompt("Enter movie");function a(){return fetch(`${e}search/movie?api_key=${t}&language=en-US&query=${o}&page=1&include_adult=false`).then(e=>e.json()).then(e=>{console.log("Поиск фильмов"),console.table(e.results.map(e=>e.original_title))})}a();
@@ -9,4 +9,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/movieId"),require("./js/movieSearch"),require("./js/moviePopular");
 },{"./sass/main.scss":"clu1","./js/movieId":"rb3b","./js/movieSearch":"ryZl","./js/moviePopular":"ZSzy"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.f0eab113.js.map
+//# sourceMappingURL=/js-project-12/src.a62c6229.js.map
