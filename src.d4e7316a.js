@@ -6,7 +6,11 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=a;const e="https://api.themoviedb.org/3/",t="a8df323e9ca157a6f58df54190ee006c",o=prompt("Enter movie");function a(){return fetch(`${e}search/movie?api_key=${t}&language=en-US&query=${o}&page=1&include_adult=false`).then(e=>e.json()).then(e=>{console.log("Поиск фильмов"),console.table(e.results.map(e=>e.original_title))})}a();
 },{}],"ZSzy":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=o;const e="https://api.themoviedb.org/3/",t="a8df323e9ca157a6f58df54190ee006c";function o(){return fetch(`${e}movie/popular?api_key=${t}&language=en-US&page=1`).then(e=>e.json()).then(e=>{console.log("Популярные фильмы"),console.table(e.results.map(e=>e.original_title))})}o();
+},{}],"BkZ8":[function(require,module,exports) {
+function e(){window.removeEventListener("keydown",t),refs.backdrop.classList.add("is-hidden"),refs.body.classList.remove("overhidden"),refs.backdrop.innerHTML="",null!==sessionStorage.getItem("libopen")&&("libopenQueue"===sessionStorage.getItem("libopen")&&(refs.filmsContainer.innerHTML="",filtersQueue()),"libopenWatched"===sessionStorage.getItem("libopen")&&(refs.filmsContainer.innerHTML="",filtersWatched()))}function n(n){n.currentTarget===n.target&&e()}function t(n){"Escape"===n.code&&e()}function o(){document.querySelector(".modal-close-btn.close").addEventListener("click",e)}
+},{}],"Ze3J":[function(require,module,exports) {
+function t(){const t=window.pageYOffset,o=document.documentElement.clientHeight;t>o&&toTopBtn.classList.add("btn-to-top--visible"),t<o&&toTopBtn.classList.remove("btn-to-top--visible")}function o(){window.pageYOffset>0&&window.scrollTo({top:0,behavior:"smooth"})}
 },{}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/movieId"),require("./js/movieSearch"),require("./js/moviePopular");
-},{"./sass/main.scss":"clu1","./js/movieId":"rb3b","./js/movieSearch":"ryZl","./js/moviePopular":"ZSzy"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.a62c6229.js.map
+"use strict";require("./sass/main.scss"),require("./js/movieId"),require("./js/movieSearch"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll");
+},{"./sass/main.scss":"clu1","./js/movieId":"rb3b","./js/movieSearch":"ryZl","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J"}]},{},["Focm"], null)
+//# sourceMappingURL=/js-project-12/src.d4e7316a.js.map
