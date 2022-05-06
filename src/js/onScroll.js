@@ -1,3 +1,8 @@
+const toTopBtn = document.querySelector('.btn-to-top');
+onToTopBtn();
+window.addEventListener('scroll', onScroll);
+toTopBtn.addEventListener('click', onToTopBtn);
+
 function onScroll() {
     const scrolled = window.pageYOffset;
     const coords = document.documentElement.clientHeight;
@@ -15,3 +20,4 @@ function onScroll() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
+  exports.onToTopBtn = onToTopBtn;
