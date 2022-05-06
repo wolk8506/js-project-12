@@ -84,8 +84,10 @@ module.exports=require("./lib/axios");
 },{"axios":"dZBD"}],"BkZ8":[function(require,module,exports) {
 function e(){window.removeEventListener("keydown",t),refs.backdrop.classList.add("is-hidden"),refs.body.classList.remove("overhidden"),refs.backdrop.innerHTML="",null!==sessionStorage.getItem("libopen")&&("libopenQueue"===sessionStorage.getItem("libopen")&&(refs.filmsContainer.innerHTML="",filtersQueue()),"libopenWatched"===sessionStorage.getItem("libopen")&&(refs.filmsContainer.innerHTML="",filtersWatched()))}function n(n){n.currentTarget===n.target&&e()}function t(n){"Escape"===n.code&&e()}function o(){document.querySelector(".modal-close-btn.close").addEventListener("click",e)}
 },{}],"Ze3J":[function(require,module,exports) {
-function t(){const t=window.pageYOffset,o=document.documentElement.clientHeight;t>o&&toTopBtn.classList.add("btn-to-top--visible"),t<o&&toTopBtn.classList.remove("btn-to-top--visible")}function o(){window.pageYOffset>0&&window.scrollTo({top:0,behavior:"smooth"})}
+const t=document.querySelector(".btn-to-top");function o(){const o=window.pageYOffset,e=document.documentElement.clientHeight;o>e&&t.classList.add("btn-to-top--visible"),o<e&&t.classList.remove("btn-to-top--visible")}function e(){window.pageYOffset>0&&window.scrollTo({top:0,behavior:"smooth"})}e(),window.addEventListener("scroll",o),t.addEventListener("click",e),exports.onToTopBtn=e;
+},{}],"cQyN":[function(require,module,exports) {
+const o={bottom:"64px",right:"unset",left:"32px",time:"0.5s",mixColor:"#fff",backgroundColor:"#fff",buttonColorDark:"#100f2c",buttonColorLight:"#fff",saveInCookies:!1,label:"🌓",autoMatchOsTheme:!0},t=new Darkmode(o);t.showWidget();
 },{}],"Focm":[function(require,module,exports) {
-"use strict";require("./sass/main.scss"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll");
-},{"./sass/main.scss":"clu1","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.018507cf.js.map
+"use strict";require("./sass/main.scss"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll"),require("./js/themeMode");
+},{"./sass/main.scss":"clu1","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J","./js/themeMode":"cQyN"}]},{},["Focm"], null)
+//# sourceMappingURL=/js-project-12/src.4550aa6c.js.map
