@@ -1,0 +1,52 @@
+.pagination-container {
+  display: flex;
+}
+
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #F7F7F7;
+  width: 40px;
+  height: 40px;
+}
+.list-number-page {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0px 8px 0px 8px;
+}
+.list-number {
+  color: #000000;
+  font-size: 12px;
+  padding: 8px
+}
+.list-number:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #FF6B08;
+  width: 40px;
+  height: 40px;
+  color: #FFFF;
+  margin: 0px 8px 0px 8px;
+  cursor: pointer;
+}
+.current-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #FF6B08;
+  width: 40px;
+  height: 40px;
+  color: #FFFF;
+  margin: 0px 8px 0px 8px;
+}
+
