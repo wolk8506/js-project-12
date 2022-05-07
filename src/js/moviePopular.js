@@ -11,7 +11,7 @@ export default function moviePopular(numberPage = 1) {
     .get(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${numberPage}`)
     .then(response => {
       console.log(response.data.total_pages);
-      renderPagination(response.data.total_pages);
+      renderPagination(numberPage);
       render(response.data.results);
     });
 }
@@ -84,23 +84,28 @@ const prevClick = document.querySelector('.prev-click');
 prevClick.addEventListener('click', prevClickFu);
 nextClick.addEventListener('click', nextClickFu);
 
-let count = 1;
+let page = 1;
 
-function renderPagination(pages) {
+function renderPagination(page) {
+  let beforePage = page - 1;
+  let afterPage = page + 1;
+  let itemPage = '';
   moviePogination.innerHTML = `
- <p>1</p>
- <p>${count}</p>
- <p>${pages}</p>`;
+    <div class='container-numberPage'>
+    <p class='numberPage active'>1</p>
+   <p class='numberPage'>${afterPage}</p>
+    </div>
+   `;
 }
 
 function nextClickFu() {
-  count++;
-  moviePopular(count);
+  page++;
+  moviePopular(page);
 }
 
 function prevClickFu() {
-  if (count <= 1) {
+  if (page <= 1) {
     return;
-  } else count--;
-  moviePopular(count);
+  } else page--;
+  moviePopular(page);
 }

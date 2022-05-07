@@ -1,7 +1,7 @@
 <main id="main">
   <section class="main-section">
     <div class="container">
-        <div class="library visually-hidden">
+      <div class="library visually-hidden">
         <p>Oops! It's empty for now. Create your own list</p>
       </div>
 
@@ -13,9 +13,15 @@
       </form>
 
       <div class="movie"></div>
-      <button class="prev-click" type="button">Назад</button>
-      <div class="movie-pogination"></div>
-      <button class="next-click" type="button">Вперед</button>
+      <div class="pagination">
+        <button class="prev-click btn-pagination" type="button">
+          <img src="./images/arrow-left.svg" />
+        </button>
+        <div class="movie-pogination"></div>
+        <button class="next-click btn-pagination" type="button">
+          <img src="./images/arrow-right.svg" />
+        </button>
+      </div>
 
       <a class="btn-to-top" title="Return to top">
         <span class="material-icons">arrow_upward</span>
