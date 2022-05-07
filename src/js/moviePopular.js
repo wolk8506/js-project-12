@@ -10,8 +10,8 @@ export default function moviePopular(numberPage = 1) {
   return axios
     .get(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${numberPage}`)
     .then(response => {
-      console.log(response.data.total_pages);
-      renderPagination(numberPage);
+      // console.log(response.data.results);
+      renderPagination(numberPage, response.data.total_pages);
       render(response.data.results);
     });
 }
@@ -37,9 +37,10 @@ function saveStorageGenres(genres) {
 
 function render(markup) {
   movie.innerHTML = markup
-    .map(({ original_title, poster_path, genre_ids, release_date, vote_average }) => {
+    .map(({ original_title, poster_path, genre_ids, release_date, vote_average, id }) => {
+      console.log('id', id);
       return `
-      <a class="movie-item" href="#">
+      <a class="movie-item" href="#" id=${id}>
       <img class="movie-img" src="https://image.tmdb.org/t/p/w500${poster_path}" />
       <h2 class="movie-title">${original_title}</h2>
       <ul class="movie-blok-info">
@@ -86,16 +87,45 @@ nextClick.addEventListener('click', nextClickFu);
 
 let page = 1;
 
-function renderPagination(page) {
+function renderPagination(page, pages) {
   let beforePage = page - 1;
   let afterPage = page + 1;
-  let itemPage = '';
-  moviePogination.innerHTML = `
-    <div class='container-numberPage'>
-    <p class='numberPage active'>1</p>
-   <p class='numberPage'>${afterPage}</p>
-    </div>
-   `;
+  let tagPage = '';
+  let active;
+  for (let i = beforePage; i <= afterPage; i++) {
+    console.log('i', i);
+
+    if (page === i || i === 0) {
+      active = 'active';
+    } else {
+      active = '';
+    }
+    if (i > pages) {
+      continue;
+    }
+
+    if (i == 0) {
+      i = i + 1;
+    }
+
+    tagPage += `<p class='numberPage ${active}'>${i}</p>`;
+  }
+
+  if (page < pages - 1) {
+    if (page < pages - 2) {
+      tagPage += `<p class='numberPage'>...</p>`;
+    }
+    tagPage += `<p class='numberPage'>${pages}</p>`;
+  }
+
+  // moviePogination.innerHTML = `
+
+  //   <p class='numberPage active'>1</p>
+  //  <p class='numberPage'>${page}</p>
+
+  //  <p class='numberPage'>${pages}</p>
+  //  `;
+  moviePogination.innerHTML = tagPage;
 }
 
 function nextClickFu() {
