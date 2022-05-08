@@ -1,12 +1,10 @@
 
 .header {
 
-  
-    
+
     background: linear-gradient(rgba(0, 0, 0, 0.56),
       rgba(0, 0, 0, 0.56)),
       url(../images/header-bg.jpg );
-      
 
     width: 100%;
     height: auto;
@@ -144,7 +142,9 @@
 @media screen and (min-width: 1024px) {
   .header{
     
+
     background: linear-gradient( rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/header-bg@2x.jpg);
+
     background-position: center;
     background-repeat: no-repeat;
   }
