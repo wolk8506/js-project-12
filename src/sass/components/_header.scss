@@ -99,6 +99,10 @@
  
 }
 
+.search__btn{
+  background-color: inherit;
+}
+
 .search__icon{
   height: 12px;
   width: 12px;
@@ -112,6 +116,7 @@
 
 .header__search{
   display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 768px) {

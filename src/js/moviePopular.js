@@ -10,7 +10,7 @@ export default function moviePopular(numberPage = 1) {
   return axios
     .get(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${numberPage}`)
     .then(response => {
-      console.log(response.data.total_pages);
+      // console.log(response.data);
       renderPagination(response.data.total_pages);
       render(response.data.results);
     });
@@ -37,9 +37,9 @@ function saveStorageGenres(genres) {
 
 function render(markup) {
   movie.innerHTML = markup
-    .map(({ original_title, poster_path, genre_ids, release_date, vote_average }) => {
+    .map(({ original_title, poster_path, genre_ids, release_date, vote_average, id }) => {
       return `
-      <a class="movie-item" href="#">
+      <a class="movie-item" data-id="${id}"href="#" onclick="event.preventDefault()">
       <img class="movie-img" src="https://image.tmdb.org/t/p/w500${poster_path}" />
       <h2 class="movie-title">${original_title}</h2>
       <ul class="movie-blok-info">
@@ -96,6 +96,7 @@ function renderPagination(pages) {
 function nextClickFu() {
   count++;
   moviePopular(count);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function prevClickFu() {
@@ -103,4 +104,5 @@ function prevClickFu() {
     return;
   } else count--;
   moviePopular(count);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
