@@ -7,8 +7,18 @@
 @import './base/_base';
 @import './base/_container';
 @import './components/buttonToTop';
+
 @import './utils/_variables';
 @import './utils/_mixins';
+
 @import './components/_modal';
+
+@import './layout/footer';
+
+@import './components/main-section';
+@import './utils/visually-hidden';
+
+
+
 
 
