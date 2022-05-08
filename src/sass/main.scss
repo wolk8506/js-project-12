@@ -6,6 +6,7 @@
 // Стили для файла с примером HTML-фрагмента
 @import './base/_base';
 @import './base/_container';
+@import './components/header';
 @import './components/buttonToTop';
 
 @import './utils/_variables';
@@ -17,6 +18,7 @@
 
 @import './components/main-section';
 @import './utils/visually-hidden';
+
 
 
 
