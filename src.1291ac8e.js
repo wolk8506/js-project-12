@@ -90,4 +90,4 @@ const o={bottom:"64px",right:"unset",left:"32px",time:"0.5s",mixColor:"#fff",bac
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll"),require("./js/themeMode");
 },{"./sass/main.scss":"clu1","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J","./js/themeMode":"cQyN"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.4550aa6c.js.map
+//# sourceMappingURL=/js-project-12/src.1291ac8e.js.map
