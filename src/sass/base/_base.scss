@@ -3,6 +3,10 @@ body {
   color: var(--main-color);
 }
 
+input {
+ outline: none;
+}
+
 .list {
   list-style: none;
 }
