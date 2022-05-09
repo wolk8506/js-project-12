@@ -1,3 +1,6 @@
+import { Spinner } from 'spin.js';
+import opts from './spinner';
+
 const movie = document.querySelector('.movie');
 
 const axios = require('axios');
@@ -7,10 +10,13 @@ const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
 
 // *****  Запрос популярных фильмов ****************************************
 export default function moviePopular(numberPage = 1) {
+  var target = document.querySelector('body');
+  var spinner = new Spinner(opts).spin(target);
   return axios
     .get(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${numberPage}`)
     .then(response => {
       // console.log(response.data);
+      spinner.stop();
       renderPagination(response.data.total_pages);
       render(response.data.results);
     });
@@ -19,16 +25,22 @@ moviePopular();
 
 // *****  Запрос жанров фильмоы  *******************************************
 function movieGenre() {
+  var target = document.querySelector('body');
+  var spinner = new Spinner(opts).spin(target);
   return axios
     .get(`${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`)
     .then(response => {
+      spinner.stop();
       return saveStorageGenres(response.data.genres);
     });
 }
 movieGenre();
 
 function saveStorageGenres(genres) {
+  var target = document.querySelector('body');
+  var spinner = new Spinner(opts).spin(target);
   genres.map(({ id, name }) => {
+    spinner.stop();
     return localStorage.setItem(`${id}`, `${name}`);
   });
 }
@@ -68,11 +80,14 @@ function inputSearch() {
 }
 
 function movieSearch() {
+  var target = document.querySelector('body');
+  var spinner = new Spinner(opts).spin(target);
   return axios
     .get(
       `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY_PROMT}&page=1&include_adult=false&page=1`,
     )
     .then(response => {
+      spinner.stop();
       return render(response.data.results);
     });
 }
