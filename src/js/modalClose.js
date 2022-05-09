@@ -1,5 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 // Закрытие модалки
+
 function modalClose() {
     window.removeEventListener('keydown', modalCloseByEsc);
     refs.backdrop.classList.add('is-hidden');
