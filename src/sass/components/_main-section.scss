@@ -76,3 +76,21 @@ h2, p, ul
 .movie-year{
     margin-right: 8px;
 }
+
+// *******************
+.activ-btn {
+    background-color: #FF6B01;
+}
+
+.movie-pogination {
+    display: flex;
+    justify-content: center;
+}
+
+.movie-pogination button {
+    border: none;
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    margin-bottom: 20px;
+}
