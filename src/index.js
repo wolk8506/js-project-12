@@ -7,3 +7,5 @@ import './js/themeMode';
 import './js/modal';
 import './js/home';
 import './js/logo';
+import './js/spinner';
+
