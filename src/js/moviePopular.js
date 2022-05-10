@@ -1,9 +1,27 @@
-import{ Spinner }  from 'spin.js';
+import { Spinner } from 'spin.js';
 import opts from './spinner';
-
 
 var target = document.querySelector('body');
 var spinner = new Spinner(opts);
+
+// ****** переход по кнопкам домой и лого ******
+
+const homePageLogo = document.querySelector('.logo');
+homePageLogo.addEventListener('click', homePage);
+
+const homePageHome = document.querySelector('.nav__list-text');
+homePageHome.addEventListener('click', homePage);
+
+function homePage() {
+  count = 1;
+  moviePopular();
+}
+// !!!!!!!!!!!!
+function currentPage(page) {
+  return localStorage.setItem(`currentPage`, `${page}`);
+}
+
+// ***************************************************
 
 const movie = document.querySelector('.movie');
 let typeRequest = '';
@@ -21,12 +39,19 @@ export default function moviePopular(numberPage = 1) {
     .then(response => {
       // console.log(response.data);
       renderPagination(response.data.total_pages);
+
       typeRequest = true;
       render(response.data.results);
       spinner.stop();
+      currentPage(numberPage);
     });
 }
-moviePopular();
+function startHP() {
+  count = Number(localStorage.getItem('currentPage'));
+  moviePopular(count);
+}
+startHP();
+// moviePopular();
 
 // *****  Запрос жанров фильмоы  *******************************************
 function movieGenre() {
@@ -254,7 +279,7 @@ function renderPagination(pages) {
 
 function foo2(n) {
   count = count + n;
-  console.log(n);
+  // console.log(n);
   nextClickFu();
 }
 
@@ -269,7 +294,7 @@ function nextClickFu() {
     movieSearch(count);
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  console.log(count);
+  // console.log(count);
 }
 
 function prevClickFu() {
