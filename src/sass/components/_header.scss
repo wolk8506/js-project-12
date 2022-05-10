@@ -1,5 +1,5 @@
 
-@media screen and (max-width:323px){
+/* @media screen and (max-width:323px){
   .header{
     background: linear-gradient(rgba(0, 0, 0, 0.56),
     rgba(0, 0, 0, 0.56)),
@@ -9,7 +9,7 @@
 }
 
 
-/* @media screen and (min-width:323px){
+@media screen and (min-width:323px){
   .header{
     background: linear-gradient(rgba(0, 0, 0, 0.56),
     rgba(0, 0, 0, 0.56)),
@@ -147,10 +147,10 @@
   .header{
     background: linear-gradient(rgba(0, 0, 0, 0.56),
     rgba(0, 0, 0, 0.56)),
-    url(../images/img/header-bg@desctop.jpg );
+    url(../images/img/header-bg@tablet.jpg );
     padding-top: 49px;
     padding-bottom: 52px;
-    background-position: cover;
+    background-size: cover;
     background-repeat: no-repeat;
 
   }
