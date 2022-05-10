@@ -94,45 +94,49 @@ function movieSearch(page) {
 }
 // *****  Рендер пагинации  *************
 const moviePogination = document.querySelector('.movie-pogination');
-
+let pagesPogination = 0;
 function renderPagination(pages) {
+  pagesPogination = pages;
   let btn2 = 2;
   let btn3 = 3;
   let btn4 = 4;
   let btn5 = 5;
   let btn6 = '...';
-  let btn7 = '';
-  if (count > 4) {
+  let btn7 = pages;
+
+  if (pages > count + 10) {
+    btn7 = count + 10;
+  }
+
+  if (count >= pages - 2) {
+    btn2 = '...';
+    btn3 = pages - 4;
+    btn4 = pages - 3;
+    btn5 = pages - 2;
+    btn6 = pages - 1;
+    btn7 = pages;
+  } else if (count > 4) {
     btn2 = '...';
     btn3 = count - 1;
     btn4 = count;
     btn5 = count + 1;
   }
-  if (pages > count + 10) {
-    btn7 = count + 10;
-  } else {
-    btn3 = count;
-    btn4 = count + 1;
-    btn5 = count;
-    btn5 = count;
-    btn7 = count;
-  }
-  // if (count - 4 < pages) {
-  //   btn3 = count;
-  //   btn4 = count;
-  //   btn5 = count;
-  //   btn5 = count;
-  //   btn7 = count;
-  // }
-  if (pages < 6) {
+  if (pages <= 7) {
+    btn2 = 2;
+    btn3 = 3;
+    btn4 = 4;
+    btn5 = 5;
     btn6 = 6;
+    btn7 = 7;
   }
   moviePogination.innerHTML = `
  <button class="prev-click" type="button">&larr;</button>
   <button id="btn01" class="${count === 1 ? 'activ-btn' : ''}" type="button">1</button>
  <button id="btn02" class="${count === 2 ? 'activ-btn' : ''}" type="button">${btn2}</button>
  <button id="btn03" class="${count === 3 ? 'activ-btn' : ''}" type="button">${btn3}</button>
- <button id="btn04" class="${count >= 4 ? 'activ-btn' : ''}" type="button">${btn4}</button>
+ <button id="btn04" class="${
+   count >= 4 && count < pages - 2 ? 'activ-btn' : ''
+ }" type="button">${btn4}</button>
  <button id="btn05" class="${count === pages - 2 ? 'activ-btn' : ''}" type="button">${btn5}</button>
  <button id="btn06" class="${count === pages - 1 ? 'activ-btn' : ''}" type="button">${btn6}</button>
  <button id="btn07" class="${count === pages ? 'activ-btn' : ''}" type="button">${btn7}</button>
@@ -163,113 +167,89 @@ function renderPagination(pages) {
   const btn03 = document.querySelector('#btn03');
   btn03.addEventListener('click', function () {
     if (count < 4) {
-      count = 2;
-      foo2(1);
-      btn5 = 5;
+      count = 0;
+      foo2(3);
     }
-
     prevClickFu();
   });
   const btn04 = document.querySelector('#btn04');
   if (count < 4) {
     btn04.addEventListener('click', function () {
-      foo2(2);
+      count = 0;
+      foo2(3);
+    });
+  } else if (count > pages - 6) {
+    btn04.addEventListener('click', function () {
+      count = 0;
+      btn7 = pages - 2;
+      foo2(pages - 4);
     });
   }
 
   const btn05 = document.querySelector('#btn05');
   btn05.addEventListener('click', function () {
-    if (count < 4) {
-      count = 2;
-      foo2(1);
+    if (count < 5) {
+      count = 0;
+      foo2(4);
       btn5 = 5;
+      return;
     }
-    nextClickFu();
+    if (count > 4 && count < pages - 3) {
+      nextClickFu();
+    } else {
+      count = 0;
+      btn7 = pages - 2;
+      foo2(pages - 3);
+    }
   });
+
   const btn06 = document.querySelector('#btn06');
   btn06.addEventListener('click', function () {
-    // foo2(9);
+    if (pages > count + 10) {
+      btn7 = count + 10;
+      foo2(9);
+    } else {
+      count = 0;
+      btn7 = pages - 1;
+      foo2(pages - 2);
+    }
   });
 
   const btn07 = document.querySelector('#btn07');
   btn07.addEventListener('click', function () {
-    foo2(9);
+    if (pages > count + 10) {
+      btn7 = count + 10;
+      foo2(9);
+    } else {
+      count = 0;
+      btn7 = pages;
+      foo2(pages - 1);
+    }
   });
 
   if (pages <= 1) {
     btn01.style.display = 'none';
   }
-  if (pages <= 2) {
+  if (pages < 2) {
     btn02.style.display = 'none';
   }
-  if (pages <= 3) {
+  if (pages < 3) {
     btn03.style.display = 'none';
   }
-  if (pages <= 4) {
+  if (pages < 4) {
     btn04.style.display = 'none';
   }
-  if (pages <= 5) {
+  if (pages < 5) {
     btn05.style.display = 'none';
   }
-  if (pages <= 6) {
+  if (pages < 6) {
     btn06.style.display = 'none';
   }
-  if (pages <= 7) {
+  if (pages < 7) {
     btn07.style.display = 'none';
     nextClick.style.display = 'none';
     prevClick.style.display = 'none';
   }
-
-  // if (pages <= 1) {
-  //   btn01.style.display = 'none';
-  //   btn02.style.display = 'none';
-  //   btn03.style.display = 'none';
-  //   btn04.style.display = 'none';
-  //   btn05.style.display = 'none';
-  //   btn06.style.display = 'none';
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // } else if (pages <= 2) {
-  //   btn02.style.display = 'none';
-  //   btn03.style.display = 'none';
-  //   btn04.style.display = 'none';
-  //   btn05.style.display = 'none';
-  //   btn06.style.display = 'none';
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // } else if (pages <= 3) {
-  //   btn03.style.display = 'none';
-  //   btn04.style.display = 'none';
-  //   btn05.style.display = 'none';
-  //   btn06.style.display = 'none';
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // } else if (pages <= 4) {
-  //   btn04.style.display = 'none';
-  //   btn05.style.display = 'none';
-  //   btn06.style.display = 'none';
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // } else if (pages <= 5) {
-  //   btn05.style.display = 'none';
-  //   btn06.style.display = 'none';
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // } else if (pages <= 6) {
-  //   btn06.style.display = 'none';
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // } else if (pages <= 7) {
-  //   btn07.style.display = 'none';
-  //   nextClick.style.display = 'none';
-  //   prevClick.style.display = 'none';
-  // }
 }
 
 function foo2(n) {
@@ -279,13 +259,16 @@ function foo2(n) {
 }
 
 function nextClickFu() {
+  if (count === pagesPogination) {
+    return;
+  }
   count++;
   if (typeRequest) {
     moviePopular(count);
   } else {
     movieSearch(count);
   }
-  // window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   console.log(count);
 }
 
@@ -298,5 +281,5 @@ function prevClickFu() {
   } else {
     movieSearch(count);
   }
-  // window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
