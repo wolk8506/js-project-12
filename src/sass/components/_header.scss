@@ -1,5 +1,5 @@
 
-@media screen and (max-width:323px){
+/* @media screen and (max-width:323px){
   .header{
     background: linear-gradient(rgba(0, 0, 0, 0.56),
     rgba(0, 0, 0, 0.56)),
@@ -35,17 +35,20 @@
 
   }
  
-}
+} */
 
 
 .header{
-     
-          max-width: 100%;
-    height: auto;
-    background-position: center;
+    display: block; 
+    width: 100%;
+    background-position: top;
     background-repeat: no-repeat;
+    background-size: cover;
     padding-top: 45px;
     padding-bottom: 90px;
+    background: linear-gradient(rgba(0, 0, 0, 0.56),
+    rgba(0, 0, 0, 0.56)),
+    url(../images/img/header-bg@mobile.jpg);
 
     &__nav{
       display: flex;
@@ -174,10 +177,10 @@
   .header{
     background: linear-gradient(rgba(0, 0, 0, 0.56),
     rgba(0, 0, 0, 0.56)),
-    url(../images/img/header-bg@desctop.jpg );
+    url(../images/img/header-bg@tablet.jpg );
     padding-top: 49px;
-    padding-bottom: 80px;
-    background-position: center;
+    padding-bottom: 52px;
+    background-size: cover;
     background-repeat: no-repeat;
 
   }
@@ -208,19 +211,13 @@
   
 }
 
-
-  
-
-
-
 @media screen and (min-width: 1024px) {
-  .header{
-    
-
+  .header {
     background: linear-gradient( rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/img/header-bg@desctop.jpg);
-
+   /*  width: 100%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    padding-bottom: 52px;
   }
 
  .lib {

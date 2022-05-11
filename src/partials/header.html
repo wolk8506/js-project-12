@@ -1,32 +1,34 @@
-<header class="header container">
-  <div class="header__container headerContainer">
-    <nav class="header__nav headerNav">
-      <a href="https://wolk8506.github.io/js-project-12/" class="logo">
-        <img src="./images/icons/film.png" alt="logo" class="logo__icon-wrapper" />
-        <span class="logo__text">Filmoteka</span>
-      </a>
-      <ul class="nav__list navList">
-        <li class="nav__list-item">
-          <a href="./index.html" class="nav__list-text homeJs current-page">HOME</a>
-        </li>
-        <li class="nav__list-item">
-          <a href="#" class="nav__list-text libJs">MY LIBRARY</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  <div class="header__search headerSearch">
-    <form class="search-form" id="search-form">
-      <input
-        class="search__input"
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button class="search__btn" type="submit">
-        <img class="search__icon" src="./images/icons/search.svg" alt="search" />
-      </button>
-    </form>
+<header class="header">
+  <div class="container">
+    <div class="headerContainer">
+      <nav class="header__nav headerNav">
+        <a href="#" class="logo" onclick="event.preventDefault()">
+          <img src="./images/icons/film.png" alt="logo" class="logo__icon-wrapper" />
+          <span class="logo__text">Filmoteka</span>
+        </a>
+        <ul class="nav__list navList">
+          <li class="nav__list-item">
+            <a href="#" class="nav__list-text" onclick="event.preventDefault()">HOME</a>
+          </li>
+          <li class="nav__list-item">
+            <a href="#" class="nav__list-text">MY LIBRARY</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__search headerSearch">
+      <form class="search-form" id="search-form">
+        <input
+          class="search__input"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button class="search__btn" type="submit">
+          <img class="search__icon" src="./images/icons/search.svg" alt="search" />
+        </button>
+      </form>
+    </div>
   </div>
 </header>
