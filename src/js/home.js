@@ -6,7 +6,7 @@ const refSearchForm = document.querySelector('.js-searchForm');
 const refBtnGroup = document.querySelector('.btn-groupList');
 home.addEventListener('click', event => {
   event.preventDefault();
-  moviePopular();
+  // moviePopular();
   refHeader.classList.add('header');
   refHeader.classList.remove('header-library');
   refSearchForm.style.display = 'flex';

@@ -1,8 +1,8 @@
-import moviePopular from "./moviePopular";
+import moviePopular from './moviePopular';
 
-const logo = document.querySelector(".logo");
+const logo = document.querySelector('.logo');
 
-logo.addEventListener("click", event=>{
-    event.preventDefault();
-    moviePopular();
-})
+logo.addEventListener('click', event => {
+  event.preventDefault();
+  moviePopular();
+});

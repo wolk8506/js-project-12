@@ -12,7 +12,6 @@ function movieId(e) {
     return;
   }
 
-  // console.log(e.path[1].dataset.id);
   movieIdF(e.path[1].dataset.id);
   modalOpen();
 }
@@ -27,7 +26,7 @@ function movieIdF(movieId) {
   return axios
     .get(`${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
     .then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       modalMovieData(response.data);
     });
 }
@@ -50,6 +49,7 @@ const movieOriginalTitle = document.querySelector(
 );
 const movieGanre = document.querySelector('.modal-short-info__description-item--ganre');
 const movieOverview = document.querySelector('.modal__about-text');
+const movieWatched = document.querySelector('.card__btn-watched');
 
 function modalMovieData({
   poster_path,
@@ -59,8 +59,9 @@ function modalMovieData({
   popularity,
   genres,
   overview,
-})
- {
+  id,
+}) {}
+{
   movieImage.src = `https://image.tmdb.org/t/p/w500${poster_path}`;
   movieTitle.innerHTML = `${original_title}`;
   movieVoteOrange.innerHTML = `${vote_average}`;
@@ -69,6 +70,8 @@ function modalMovieData({
   movieOriginalTitle.innerHTML = `${original_title}`;
   movieGanre.innerHTML = `${genres.map(genre => genre.name).join(', ')}`;
   movieOverview.innerHTML = `${overview}`;
+  movieImage.alt = `${original_title}`;
+  movieWatched.value = `${id}`;
 }
 
 (() => {
@@ -90,11 +93,7 @@ function modalMovieData({
     body.style.overflow = 'visible';
   }
   listenerModalBtn();
-  
 })();
-
-
-
 
 /* /modal-btn */
 export const watched = 'Watched';
@@ -104,7 +103,6 @@ const buttonLabelWatchedAdd = 'add to Watched';
 const buttonLabelWatchedRemove = 'remove from Watched';
 const buttonLabelQueuedAdd = 'add to Queue';
 const buttonLabelQueueRemove = 'remove from Queue';
-
 
 ////////////////////////////////////////////////
 //Поиск ссылок по карточке
@@ -123,7 +121,6 @@ function searchLinks() {
     btnWatched: document.querySelector('.card__btn-watched'),
     btnQueue: document.querySelector('.card__btn-que'),
   };
-
 }
 
 //////////// Кнопка "add to Watched"  добавить - к просмотренным
@@ -132,14 +129,12 @@ function searchLinks() {
 function updateStorage(datalocalStorage, keyStorage) {
   const dataStorage = [];
   dataStorage.push(datalocalStorage);
-     console.log(datalocalStorage);
+  console.log(datalocalStorage);
   localStorage[keyStorage] = JSON.stringify(dataStorage);
 }
 
 // После рендеринга - устанавливает слушатель
-export function  listenerModalBtn() {
-
-
+export function listenerModalBtn() {
   const btnAddWatched = document.querySelector('.card__btn-watched');
   btnAddWatched.addEventListener('click', addsWatched);
 
@@ -149,15 +144,13 @@ export function  listenerModalBtn() {
   storageСheckQueue();
 }
 
-
 //Проверка статуса кнопок в зависимости от наличия в хранилище и зменение названия
 function storageСheckWatched() {
-
   const linsk = searchLinks();
   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
   const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
   if (movieStorageData === null) {
-    console.log("No data in movie storage");
+    console.log('No data in movie storage');
     return;
   }
   if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === watched) {
@@ -168,17 +161,15 @@ function storageСheckWatched() {
 }
 
 function storageСheckQueue() {
-
-  
   const linsk = searchLinks();
   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
   const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
   if (!movieStorageData) {
-    console.log("No data at queue check");
+    console.log('No data at queue check');
     return;
   }
   if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === queue) {
-    console.log("some data at queue check");
+    console.log('some data at queue check');
 
     linsk.btnQueue.textContent = buttonLabelQueueRemove;
   } else {
@@ -188,15 +179,15 @@ function storageСheckQueue() {
 
 // Кнопка - работа с хранилищем (добавление)
 function addsWatched() {
-  console.log("attempted adding a film to watched");
+  console.log('attempted adding a film to watched');
 
   const linsk = searchLinks();
   let genresStrong = linsk.dataGenres.textContent;
   genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
-     //console.log(genresStrong);
+  //console.log(genresStrong);
 
   //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
-     //console.log(yearData);
+  //console.log(yearData);
 
   const datalocalStorage = {
     id: linsk.dataId.getAttribute('data-action'),
@@ -222,7 +213,6 @@ function addsWatched() {
   storageСheckWatched();
   storageСheckQueue();
 }
-
 
 //////////// Кнопка "add to queue" -  добавить в очередь
 function addsQueue() {

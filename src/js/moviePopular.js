@@ -31,7 +31,7 @@ const homePageLogo = document.querySelector('.logo');
 homePageLogo.addEventListener('click', homePage);
 
 const homePageHome = document.querySelector('.nav__list-text');
-homePageHome.addEventListener('click', homePage);
+// homePageHome.addEventListener('click', homePage);
 
 function homePage() {
   count = 1;
@@ -69,6 +69,9 @@ export default function moviePopular(numberPage = 1) {
 }
 function startHP() {
   count = Number(localStorage.getItem('currentPage'));
+  if (count === 0) {
+    count = 1;
+  }
   moviePopular(count);
 }
 startHP();
@@ -328,4 +331,12 @@ function prevClickFu() {
     movieSearch(count);
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// !!!!!!!!!!!!!!!!!!!!!
+let renderMovied = [];
+
+// ****************************************
+let movieWatched = JSON.parse(localStorage.getItem('movieWatched'));
+if (movieWatched === null) {
+  localStorage.setItem('movieWatched', JSON.stringify([]));
 }
