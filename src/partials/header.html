@@ -11,13 +11,13 @@
             <a href="#" class="nav__list-text" onclick="event.preventDefault()">HOME</a>
           </li>
           <li class="nav__list-item">
-            <a href="#" class="nav__list-text">MY LIBRARY</a>
+            <a href="#" class="nav__list-text js-library">MY LIBRARY</a>
           </li>
         </ul>
       </nav>
     </div>
     <div class="header__search headerSearch">
-      <form class="search-form" id="search-form">
+      <form class="search-form js-searchForm" id="search-form">
         <input
           class="search__input"
           type="text"
@@ -30,5 +30,17 @@
         </button>
       </form>
     </div>
+    <ul class="btn-groupList" style="display: none">
+      <li class="modal-buttons-add-item">
+        <button class="modal-btn-add modal-btn-add--watched library js-watched" type="button">
+          WATCHED
+        </button>
+      </li>
+      <li class="modal-buttons-item">
+        <button class="modal-btn-add library js-queue" style="color: #ffff" type="button">
+          QUEUE
+        </button>
+      </li>
+    </ul>
   </div>
 </header>
