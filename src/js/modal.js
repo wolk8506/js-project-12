@@ -1,4 +1,7 @@
+import onEscBtnClick from './modalClose';
+
 const axios = require('axios');
+const body = document.querySelector('body');
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!
 const movieModal = document.querySelector('.movie-modal-id');
@@ -32,6 +35,9 @@ const backdrop = document.querySelector('.backdrop');
 
 function modalOpen() {
   backdrop.classList.toggle('is-hidden');
+  window.addEventListener('keydown', onEscBtnClick);
+  const body = document.querySelector('body');
+  body.style.overflow = 'hidden';
 }
 
 const movieImage = document.querySelector('.modal__img');
@@ -53,7 +59,8 @@ function modalMovieData({
   popularity,
   genres,
   overview,
-}) {
+})
+ {
   movieImage.src = `https://image.tmdb.org/t/p/w500${poster_path}`;
   movieTitle.innerHTML = `${original_title}`;
   movieVoteOrange.innerHTML = `${vote_average}`;
@@ -80,7 +87,10 @@ function modalMovieData({
     movieOriginalTitle.innerHTML = ``;
     movieGanre.innerHTML = ``;
     movieOverview.innerHTML = ``;
+    body.style.overflow = 'visible';
   }
+  listenerModalBtn();
+  
 })();
 
 
@@ -95,23 +105,25 @@ const buttonLabelWatchedRemove = 'remove from Watched';
 const buttonLabelQueuedAdd = 'add to Queue';
 const buttonLabelQueueRemove = 'remove from Queue';
 
+
 ////////////////////////////////////////////////
 //Поиск ссылок по карточке
 function searchLinks() {
   return {
     dataId: document.querySelector('.modal'),
-    dataRelease: document.querySelector('.modal'),
+    //dataRelease: document.querySelector('.modal'),
     dataImg: document.querySelector('.modal__img'),
     dataAverage: document.querySelector('.card__item-average'),
     dataCount: document.querySelector('.card__item-count'),
     dataPopularity: document.querySelector('.card__item-count'),
     dataOriginal: document.querySelector('.card__item-original-title'),
     dataGenres: document.querySelector('.card__item-genres'),
-    //  dataGenres: document.querySelectorAll('.card__item-genre'),
+    //dataGenres: document.querySelectorAll('.card__item-genre'),
     dataOverview: document.querySelector('.card__text'),
     btnWatched: document.querySelector('.card__btn-watched'),
     btnQueue: document.querySelector('.card__btn-que'),
   };
+
 }
 
 //////////// Кнопка "add to Watched"  добавить - к просмотренным
@@ -120,12 +132,14 @@ function searchLinks() {
 function updateStorage(datalocalStorage, keyStorage) {
   const dataStorage = [];
   dataStorage.push(datalocalStorage);
-  //   console.log(datalocalStorage);
+     console.log(datalocalStorage);
   localStorage[keyStorage] = JSON.stringify(dataStorage);
 }
 
 // После рендеринга - устанавливает слушатель
-export function listenerModalBtn() {
+export function  listenerModalBtn() {
+
+
   const btnAddWatched = document.querySelector('.card__btn-watched');
   btnAddWatched.addEventListener('click', addsWatched);
 
@@ -135,12 +149,15 @@ export function listenerModalBtn() {
   storageСheckQueue();
 }
 
+
 //Проверка статуса кнопок в зависимости от наличия в хранилище и зменение названия
 function storageСheckWatched() {
+
   const linsk = searchLinks();
   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
   const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
   if (movieStorageData === null) {
+    console.log("No data in movie storage");
     return;
   }
   if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === watched) {
@@ -151,13 +168,18 @@ function storageСheckWatched() {
 }
 
 function storageСheckQueue() {
+
+  
   const linsk = searchLinks();
   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
   const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
-  if (movieStorageData === null) {
+  if (!movieStorageData) {
+    console.log("No data at queue check");
     return;
   }
   if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === queue) {
+    console.log("some data at queue check");
+
     linsk.btnQueue.textContent = buttonLabelQueueRemove;
   } else {
     linsk.btnQueue.textContent = buttonLabelQueuedAdd;
@@ -166,17 +188,19 @@ function storageСheckQueue() {
 
 // Кнопка - работа с хранилищем (добавление)
 function addsWatched() {
+  console.log("attempted adding a film to watched");
+
   const linsk = searchLinks();
   let genresStrong = linsk.dataGenres.textContent;
-  genresStrong = genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
-  //   console.log(genresStrong);
+  genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
+     //console.log(genresStrong);
 
-  const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
-  //   console.log(yearData);
+  //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
+     //console.log(yearData);
 
   const datalocalStorage = {
     id: linsk.dataId.getAttribute('data-action'),
-    release_date: yearData,
+    //release_date: yearData,
     title: linsk.dataImg.getAttribute('alt'),
     poster_path: linsk.dataImg.getAttribute('src'),
     vote_average: linsk.dataAverage.textContent,
@@ -199,6 +223,7 @@ function addsWatched() {
   storageСheckQueue();
 }
 
+
 //////////// Кнопка "add to queue" -  добавить в очередь
 function addsQueue() {
   const linsk = searchLinks();
@@ -206,12 +231,12 @@ function addsQueue() {
   genresStrong = genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
   //   console.log(genresStrong);
 
-  const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
+  //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
   //   console.log(yearData);
 
   const datalocalStorage = {
     id: linsk.dataId.getAttribute('data-action'),
-    release_date: yearData,
+    //release_date: yearData,
     title: linsk.dataImg.getAttribute('alt'),
     poster_path: linsk.dataImg.getAttribute('src'),
     vote_average: linsk.dataAverage.textContent,

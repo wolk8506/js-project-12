@@ -1,45 +1,37 @@
-//////////////////////////////////////////////////////////////////////////////
-// Закрытие модалки
 
-function modalClose() {
-    window.removeEventListener('keydown', modalCloseByEsc);
-    refs.backdrop.classList.add('is-hidden');
-    refs.body.classList.remove('overhidden');
-    refs.backdrop.innerHTML = '';
-    //   filtersWatched();
-    //   filtersQueue();
-    if (sessionStorage.getItem('libopen') === null) {
-      return;
-    }
-  
-    if (sessionStorage.getItem('libopen') === 'libopenQueue') {
-      refs.filmsContainer.innerHTML = '';
-      filtersQueue();
-    }
-  
-    if (sessionStorage.getItem('libopen') === 'libopenWatched') {
-      refs.filmsContainer.innerHTML = '';
-      filtersWatched();
-    }
-  }
-  
-  // Закрытие по клику бекдроп
-  function backdropClick(event) {
+
+
+const backdrop = document.querySelector('.backdrop');
+const body = document.querySelector('body');
+backdrop.addEventListener('click', onBackdropClick);
+
+
+function onCloseModal() {
+    window.removeEventListener('keydown', onEscBtnClick)
+    backdrop.classList.add('is-hidden')
+    body.style.overflow = 'visible';
+
+}
+
+function onBackdropClick(event) {
     if (event.currentTarget === event.target) {
-      modalClose();
+        backdrop.classList.add('is-hidden')
+        body.style.overflow = 'visible';
     }
-  }
-  
-  // Закрытие модалки по Escape
-  function modalCloseByEsc(event) {
+}
+
+  export default function onEscBtnClick(event) {
     if (event.code === 'Escape') {
-      modalClose();
+        onCloseModal(event);
     }
-  }
+} 
+
   
   ///////////////////////////////////////////////////////////////////////////
   // Закрытие модалки по Кнопке
   function closeByButton() {
     const modalCloseBtn = document.querySelector('.modal-close-btn.close');
-    modalCloseBtn.addEventListener('click', modalClose);
+    body.style.overflow = 'visible';
+    modalCloseBtn.addEventListener('click', onCloseModal);
+
   }
