@@ -12,7 +12,6 @@ function movieId(e) {
     return;
   }
 
-  // console.log(e.path[1].dataset.id);
   movieIdF(e.path[1].dataset.id);
   modalOpen();
 }
@@ -27,7 +26,7 @@ function movieIdF(movieId) {
   return axios
     .get(`${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
     .then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       modalMovieData(response.data);
     });
 }
@@ -50,6 +49,7 @@ const movieOriginalTitle = document.querySelector(
 );
 const movieGanre = document.querySelector('.modal-short-info__description-item--ganre');
 const movieOverview = document.querySelector('.modal__about-text');
+const movieWatched = document.querySelector('.card__btn-watched');
 
 function modalMovieData({
   poster_path,
@@ -59,8 +59,12 @@ function modalMovieData({
   popularity,
   genres,
   overview,
+  id,
+}) {
+
 })
  {
+
   movieImage.src = `https://image.tmdb.org/t/p/w500${poster_path}`;
   movieTitle.innerHTML = `${original_title}`;
   movieVoteOrange.innerHTML = `${vote_average}`;
@@ -69,6 +73,8 @@ function modalMovieData({
   movieOriginalTitle.innerHTML = `${original_title}`;
   movieGanre.innerHTML = `${genres.map(genre => genre.name).join(', ')}`;
   movieOverview.innerHTML = `${overview}`;
+  movieImage.alt = `${original_title}`;
+  movieWatched.value = `${id}`;
 }
 
 (() => {
@@ -92,9 +98,6 @@ function modalMovieData({
   listenerModalBtn();
   
 })();
-
-
-
 
 /* /modal-btn */
 export const watched = 'Watched';
