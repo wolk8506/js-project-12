@@ -102,4 +102,4 @@ let e="",t=!1,n=JSON.parse(localStorage.getItem("movieWatched")),a=0;const i=doc
 },{"axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll"),require("./js/themeMode"),require("./js/modal"),require("./js/home"),require("./js/logo"),require("./js/spinner"),require("./js/addWathed");
 },{"./sass/main.scss":"clu1","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J","./js/themeMode":"cQyN","./js/modal":"RSqK","./js/home":"nqs3","./js/logo":"yXcY","./js/spinner":"Sc1o","./js/addWathed":"KDHQ"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.f6eb12cf.js.map
+//# sourceMappingURL=/js-project-12/src.3b8b6dfe.js.map
