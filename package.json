@@ -2,7 +2,6 @@
   "name": "parcel-project-template",
   "version": "1.1.0",
   "description": "",
-  
   "main": "index.js",
   "homepage": "https://wolk8506.github.io/js-project-12/",
   "scripts": {
@@ -10,7 +9,7 @@
     "build": "parcel build src/*.html --public-url /js-project-12/"
   },
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
