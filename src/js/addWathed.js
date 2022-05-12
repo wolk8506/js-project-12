@@ -1,14 +1,11 @@
-let renderMovied = [];
+let renderMovied = '';
 let btnDelMov = false;
-
-// ****************************************
 let movieWatched = JSON.parse(localStorage.getItem('movieWatched'));
-// if (movieWatched === null) {
-//   localStorage.setItem('movieWatched', JSON.stringify([]));
-// }
-console.log(movieWatched);
+let count = 0;
+
 const btnAdd = document.querySelector('.modal-btn-add');
 const movieModal = document.querySelector('.movie-modal-id');
+
 movieModal.addEventListener('click', movieId);
 
 function movieId(e) {
@@ -22,21 +19,34 @@ function movieId(e) {
   }
   removeClassList();
 }
-
 btnAdd.addEventListener('click', addMovie);
 
 function addMovie(e) {
-  if (movieWatched.includes(e.path[0].value)) {
+  if (movieWatched.includes(e.path[0].value) && btnDelMov === false) {
     return;
+  } else if (btnDelMov === true && movieWatched.includes(e.path[0].value)) {
+    movieWatched.splice(movieWatched.indexOf(e.path[0].value), 1);
+    removeClassList();
+  } else if (btnDelMov === true && !movieWatched.includes(e.path[0].value)) {
+    movieWatched.push(e.path[0].value);
+    addClassList();
   }
-  movieWatched.push(e.path[0].value);
-  addClassList();
+  if (btnDelMov === false) {
+    movieWatched.push(e.path[0].value);
+  }
+
+  if (btnDelMov === false) {
+    addClassList();
+  }
   movieIdF(movieWatched);
   localStorage.setItem('movieWatched', JSON.stringify(movieWatched));
 }
 
 function addClassList() {
   btnAdd.innerHTML = 'Movied';
+  if (btnDelMov === true) {
+    btnAdd.innerHTML = 'delete';
+  }
 }
 function removeClassList() {
   btnAdd.innerHTML = 'ADD TO WATCHED';
@@ -49,7 +59,7 @@ const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
 // *****  Запрос фильмов ID *********************************
 const axios = require('axios');
 
-// movieIdF(movieWatched);
+movieIdF(movieWatched);
 
 function movieIdF(movieId) {
   renderMovied = '';
@@ -61,8 +71,6 @@ function movieIdF(movieId) {
 }
 
 // *************************************************************************
-
-let count = 0;
 
 function render({ original_title, poster_path, genres, release_date, vote_average, id }) {
   renderMovied =
@@ -78,27 +86,33 @@ function render({ original_title, poster_path, genres, release_date, vote_averag
       </ul>
       </a>`;
   count++;
-  if (movieWatched.length === count) {
-    movie.innerHTML = renderMovied;
-  }
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const moviePogination = document.querySelector('.movie-pogination');
 const movie = document.querySelector('.movie');
-const home = document.querySelector('.nav__list-text--home');
+const library = document.querySelector('.nav__list-text--home');
+
+library.addEventListener('click', event => {
+  event.preventDefault();
+  btnDelMov = true;
+  movie.innerHTML = renderMovied;
+  moviePogination.innerHTML = '';
+});
+// !!!!!!!!!!!!удаление из массива
+const home = document.querySelector('.nav__list-text');
 
 home.addEventListener('click', event => {
   event.preventDefault();
-  btnDelMov = true;
-  console.log(111111111);
-  movie.innerHTML = renderMovied;
-  movieIdF(movieWatched);
-  moviePogination.innerHTML = '';
-  console.log(renderMovied);
+  btnDelMov = false;
 });
-// !!!!!!!!!!!!удаление из массива
-
-if (btnDelMov === true) {
-  btnAdd.innerHTML = 'delete';
-}
-console.log(renderMovied.indexOf(25));
+(() => {
+  const refs = {
+    closeModalBtn: document.querySelector('.modal-close-btn'),
+  };
+  refs.closeModalBtn.addEventListener('click', toggleModal);
+  function toggleModal() {
+    if (btnDelMov === true) {
+      movie.innerHTML = renderMovied;
+    }
+  }
+})();

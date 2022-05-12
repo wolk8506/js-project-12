@@ -332,11 +332,3 @@ function prevClickFu() {
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-// !!!!!!!!!!!!!!!!!!!!!
-let renderMovied = [];
-
-// ****************************************
-let movieWatched = JSON.parse(localStorage.getItem('movieWatched'));
-if (movieWatched === null) {
-  localStorage.setItem('movieWatched', JSON.stringify([]));
-}
