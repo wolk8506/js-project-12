@@ -19,8 +19,8 @@
   background: rgba(0, 0, 0, 0.25);
   opacity: 1;
   
-  transition: opacity 250ms var(--timing-function),
-  visibility 250ms var(--timing-function);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (max-width: 767px) {
     padding: 20px;
@@ -42,7 +42,7 @@
 
   background-color: #FFFFFF;
   
-  transition: transform 250ms var(--timing-function);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     padding: 40px 72px 40px 36px;
@@ -226,10 +226,12 @@ border: none;
 
 .modal-about-text-wrapper {
   margin-bottom: 20px;
+  // overflow-x: hidden;
+    overflow-y: auto;
   @media screen and (min-width: 768px) {
       min-width: 264px;
       height: 236px;
-      overflow-y: scroll;
+      
     }
     @media screen and (min-width: 1024px) {
 
