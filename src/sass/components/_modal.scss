@@ -226,10 +226,12 @@ border: none;
 
 .modal-about-text-wrapper {
   margin-bottom: 20px;
+  // overflow-x: hidden;
+    overflow-y: auto;
   @media screen and (min-width: 768px) {
       min-width: 264px;
       height: 236px;
-      overflow-y: scroll;
+      
     }
     @media screen and (min-width: 1024px) {
 
