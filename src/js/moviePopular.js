@@ -10,14 +10,14 @@ console.log('header', refHeader);
 const myLibraryBtn = document.querySelector('.js-library');
 const refSearchForm = document.querySelector('.js-searchForm');
 const refBtnGroup = document.querySelector('.btn-groupList');
-const watchedBtn = document.querySelector('.js-watched');
-const queueBtn = document.querySelector('.js-queue');
+// const watchedBtn = document.querySelector('.js-watched');//перенести в новый документ
+// const queueBtn = document.querySelector('.js-queue');//перенести в новый документ
 
 myLibraryBtn.addEventListener('click', switchPage);
-watchedBtn.addEventListener('click', activeWatched);
-queueBtn.addEventListener('click', activeQueue);
-function activeWatched() {}
-function activeQueue() {}
+// watchedBtn.addEventListener('click', activeWatched);//перенести в новый документ
+// queueBtn.addEventListener('click', activeQueue);//перенести в новый документ
+// function activeWatched() {} //перенести в новый документ
+// function activeQueue() {} //перенести в новый документ
 
 function switchPage() {
   refHeader.classList.remove('header');
@@ -31,7 +31,7 @@ const homePageLogo = document.querySelector('.logo');
 homePageLogo.addEventListener('click', homePage);
 
 const homePageHome = document.querySelector('.nav__list-text');
-// homePageHome.addEventListener('click', homePage);
+homePageHome.addEventListener('click', homePage);
 
 function homePage() {
   count = 1;

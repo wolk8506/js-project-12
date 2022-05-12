@@ -3,7 +3,7 @@ let btnDelMov = false;
 let movieWatched = JSON.parse(localStorage.getItem('movieWatched'));
 let count = 0;
 
-const btnAdd = document.querySelector('.modal-btn-add');
+const btnAdd = document.querySelector('.js-watched');
 const movieModal = document.querySelector('.movie-modal-id');
 
 movieModal.addEventListener('click', movieId);

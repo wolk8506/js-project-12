@@ -60,8 +60,7 @@ function modalMovieData({
   genres,
   overview,
   id,
-}) {}
-{
+}) {
   movieImage.src = `https://image.tmdb.org/t/p/w500${poster_path}`;
   movieTitle.innerHTML = `${original_title}`;
   movieVoteOrange.innerHTML = `${vote_average}`;
