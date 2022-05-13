@@ -8,5 +8,6 @@ import './js/modal';
 import './js/home';
 import './js/logo';
 import './js/spinner';
-import './js/addWathed';
+import './js/addMovied';
 import './js/addQueue';
+import './js/btnHeaderActiv';

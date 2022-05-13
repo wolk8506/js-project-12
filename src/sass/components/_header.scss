@@ -88,18 +88,22 @@
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  &-item:hover:after,
-  &-item:focus {
+  &-item:hover::after,
+  &-item:focus::after {
     opacity: 1;
-
-
   }
 
+
+  
 
   &-item:not(:last-child) {
     margin-right: 40px;
   }
 
+}
+
+.nav__list-item--activ.nav__list-item::after{
+  opacity: 1;
 }
 
 
@@ -230,9 +234,7 @@ justify-content: center;
     height: 216px;
   }
 }
-// .active {
-//   background-color: #FF6B01;
-// }
+
 
 .header-btn-add--watched,
 .header-btn-add--queue {

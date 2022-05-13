@@ -1,4 +1,4 @@
-import movieUpdadeRender from './addWathed';
+import movieUpdadeRender from './addMovied';
 import movieUpdadeRender2 from './addQueue';
 
 const backdrop = document.querySelector('.backdrop');
