@@ -106,4 +106,4 @@ const o={bottom:"50px",right:"unset",left:"32px",time:"0.5s",mixColor:"#fff",bac
 },{"axios":"dZBD"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/initLS"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll"),require("./js/themeMode"),require("./js/modal"),require("./js/home"),require("./js/logo"),require("./js/spinner"),require("./js/addWathed"),require("./js/addQueue");
 },{"./sass/main.scss":"clu1","./js/initLS":"ivfh","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J","./js/themeMode":"cQyN","./js/modal":"RSqK","./js/home":"nqs3","./js/logo":"yXcY","./js/spinner":"Sc1o","./js/addWathed":"KDHQ","./js/addQueue":"xyjw"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.968e6862.js.map
+//# sourceMappingURL=/js-project-12/src.63760e18.js.map
