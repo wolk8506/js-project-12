@@ -10,6 +10,7 @@ const options = {
   saveInCookies: true, // default: true,
   label: '🌓', // default: ''
   autoMatchOsTheme: false, // default: true
+  
 };
 
 const darkmode = new Darkmode(options);
