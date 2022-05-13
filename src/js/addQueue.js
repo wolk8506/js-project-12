@@ -1,14 +1,11 @@
+//Queue;
+
 let renderMovied = '';
 let btnDelMov = false;
-let movieWatched = JSON.parse(localStorage.getItem('movieWatched'));
-
-// if (movieWatched === null) {
-//   localStorage.setItem('movieWatched', JSON.stringify([]));
-// }
-
+let movieQueue = JSON.parse(localStorage.getItem('movieQueue'));
 let count = 0;
 
-const btnAdd = document.querySelector('.js-watched');
+const btnAdd = document.querySelector('.js-queue');
 const movieModal = document.querySelector('.movie-modal-id');
 
 movieModal.addEventListener('click', movieId);
@@ -18,7 +15,7 @@ function movieId(e) {
     return;
   }
   console.log(e.path[1].dataset.id);
-  if (movieWatched.includes(e.path[1].dataset.id)) {
+  if (movieQueue.includes(e.path[1].dataset.id)) {
     addClassList();
     return;
   }
@@ -27,34 +24,34 @@ function movieId(e) {
 btnAdd.addEventListener('click', addMovie);
 
 function addMovie(e) {
-  if (movieWatched.includes(e.path[0].value) && btnDelMov === false) {
+  if (movieQueue.includes(e.path[0].value) && btnDelMov === false) {
     return;
-  } else if (btnDelMov === true && movieWatched.includes(e.path[0].value)) {
-    movieWatched.splice(movieWatched.indexOf(e.path[0].value), 1);
+  } else if (btnDelMov === true && movieQueue.includes(e.path[0].value)) {
+    movieQueue.splice(movieQueue.indexOf(e.path[0].value), 1);
     removeClassList();
-  } else if (btnDelMov === true && !movieWatched.includes(e.path[0].value)) {
-    movieWatched.push(e.path[0].value);
+  } else if (btnDelMov === true && !movieQueue.includes(e.path[0].value)) {
+    movieQueue.push(e.path[0].value);
     addClassList();
   }
   if (btnDelMov === false) {
-    movieWatched.push(e.path[0].value);
+    movieQueue.push(e.path[0].value);
   }
 
   if (btnDelMov === false) {
     addClassList();
   }
-  movieIdF(movieWatched);
-  localStorage.setItem('movieWatched', JSON.stringify(movieWatched));
+  movieIdF(movieQueue);
+  localStorage.setItem('movieQueue', JSON.stringify(movieQueue));
 }
 
 function addClassList() {
-  btnAdd.innerHTML = 'Movied';
+  btnAdd.innerHTML = 'Queue';
   if (btnDelMov === true) {
     btnAdd.innerHTML = 'delete';
   }
 }
 function removeClassList() {
-  btnAdd.innerHTML = 'ADD TO WATCHED';
+  btnAdd.innerHTML = 'ADD TO Queue';
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -64,7 +61,7 @@ const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
 // *****  Запрос фильмов ID *********************************
 const axios = require('axios');
 
-movieIdF(movieWatched);
+movieIdF(movieQueue);
 
 function movieIdF(movieId) {
   renderMovied = '';
@@ -95,15 +92,7 @@ function render({ original_title, poster_path, genres, release_date, vote_averag
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const moviePogination = document.querySelector('.movie-pogination');
 const movie = document.querySelector('.movie');
-const library = document.querySelector('.nav__list-text--home');
-const btnWathed = document.querySelector('.js-wathed-header');
-
-btnWathed.addEventListener('click', event => {
-  event.preventDefault();
-  btnDelMov = true;
-  movie.innerHTML = renderMovied;
-  moviePogination.innerHTML = '';
-});
+const library = document.querySelector('.js-queue-header');
 
 library.addEventListener('click', event => {
   event.preventDefault();

@@ -1,5 +1,5 @@
 import './sass/main.scss';
-
+import './js/initLS';
 import './js/moviePopular';
 import './js/modalClose';
 import './js/onScroll';
@@ -9,3 +9,4 @@ import './js/home';
 import './js/logo';
 import './js/spinner';
 import './js/addWathed';
+import './js/addQueue';

@@ -284,14 +284,13 @@ padding: 6px;
             }
 }
 
-.modal-btn-add--watched{
+.modal-btn-add--watched, .modal-btn-add--queue{
+  border: 1px solid #000000;
+    background-color: inherit;
+}
+
+.modal-btn-add--watched:hover, .modal-btn-add--watched:focus, .modal-btn-add--queue:hover, .modal-btn-add--queue:focus {
   background: #FF6B01;
   color: #FFFFFF;
   border: none;
-}
-
-.modal-btn-add--queue {
-  border: 1px solid #000000;
-  background-color: inherit;
-  
 }

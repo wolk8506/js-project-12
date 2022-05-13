@@ -51,7 +51,7 @@ const axios = require('axios');
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'a8df323e9ca157a6f58df54190ee006c';
-
+movieGenre();
 // *****  Запрос популярных фильмов ****************************************
 export default function moviePopular(numberPage = 1) {
   spinner.spin(target);
@@ -85,7 +85,6 @@ function movieGenre() {
       return saveStorageGenres(response.data.genres);
     });
 }
-movieGenre();
 
 function saveStorageGenres(genres) {
   genres.map(({ id, name }) => {

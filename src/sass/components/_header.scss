@@ -231,3 +231,19 @@ justify-content: center;
 // .active {
 //   background-color: #FF6B01;
 // }
+
+.header-btn-add--watched,
+.header-btn-add--queue {
+  // border: 1px solid #000000;
+  background-color: inherit;
+  color: #FFFFFF;
+}
+
+.header-btn-add--watched:hover,
+.header-btn-add--watched:focus,
+.header-btn-add--queue:hover,
+.header-btn-add--queue:focus {
+  background: #FF6B01;
+  color: #FFFFFF;
+  border: none;
+}

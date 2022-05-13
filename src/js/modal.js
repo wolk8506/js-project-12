@@ -50,6 +50,7 @@ const movieOriginalTitle = document.querySelector(
 const movieGanre = document.querySelector('.modal-short-info__description-item--ganre');
 const movieOverview = document.querySelector('.modal__about-text');
 const movieWatched = document.querySelector('.card__btn-watched');
+const movieQueue = document.querySelector('.js-queue');
 
 function modalMovieData({
   poster_path,
@@ -71,6 +72,7 @@ function modalMovieData({
   movieOverview.innerHTML = `${overview}`;
   movieImage.alt = `${original_title}`;
   movieWatched.value = `${id}`;
+  movieQueue.value = `${id}`;
 }
 
 (() => {
@@ -90,172 +92,173 @@ function modalMovieData({
     movieGanre.innerHTML = ``;
     movieOverview.innerHTML = ``;
     body.style.overflow = 'visible';
+    movieQueue.value = ``;
   }
-  listenerModalBtn();
+  // listenerModalBtn();
 })();
-
+// !!!!!!!!!!!!!!!!!!   what does this code do??????
 /* /modal-btn */
-export const watched = 'Watched';
-export const queue = 'Queue';
+// export const watched = 'Watched';
+// export const queue = 'Queue';
 
-const buttonLabelWatchedAdd = 'add to Watched';
-const buttonLabelWatchedRemove = 'remove from Watched';
-const buttonLabelQueuedAdd = 'add to Queue';
-const buttonLabelQueueRemove = 'remove from Queue';
+// const buttonLabelWatchedAdd = 'add to Watched';
+// const buttonLabelWatchedRemove = 'remove from Watched';
+// const buttonLabelQueuedAdd = 'add to Queue';
+// const buttonLabelQueueRemove = 'remove from Queue';
 
-////////////////////////////////////////////////
-//Поиск ссылок по карточке
-function searchLinks() {
-  return {
-    dataId: document.querySelector('.modal'),
-    //dataRelease: document.querySelector('.modal'),
-    dataImg: document.querySelector('.modal__img'),
-    dataAverage: document.querySelector('.card__item-average'),
-    dataCount: document.querySelector('.card__item-count'),
-    dataPopularity: document.querySelector('.card__item-count'),
-    dataOriginal: document.querySelector('.card__item-original-title'),
-    dataGenres: document.querySelector('.card__item-genres'),
-    //dataGenres: document.querySelectorAll('.card__item-genre'),
-    dataOverview: document.querySelector('.card__text'),
-    btnWatched: document.querySelector('.card__btn-watched'),
-    btnQueue: document.querySelector('.card__btn-que'),
-  };
-}
+// ////////////////////////////////////////////////
+// //Поиск ссылок по карточке
+// function searchLinks() {
+//   return {
+//     dataId: document.querySelector('.modal'),
+//     //dataRelease: document.querySelector('.modal'),
+//     dataImg: document.querySelector('.modal__img'),
+//     dataAverage: document.querySelector('.card__item-average'),
+//     dataCount: document.querySelector('.card__item-count'),
+//     dataPopularity: document.querySelector('.card__item-count'),
+//     dataOriginal: document.querySelector('.card__item-original-title'),
+//     dataGenres: document.querySelector('.card__item-genres'),
+//     //dataGenres: document.querySelectorAll('.card__item-genre'),
+//     dataOverview: document.querySelector('.card__text'),
+//     btnWatched: document.querySelector('.card__btn-watched'),
+//     btnQueue: document.querySelector('.card__btn-que'),
+//   };
+// }
 
-//////////// Кнопка "add to Watched"  добавить - к просмотренным
+// //////////// Кнопка "add to Watched"  добавить - к просмотренным
 
-// Добавляет в  localStorage
-function updateStorage(datalocalStorage, keyStorage) {
-  const dataStorage = [];
-  dataStorage.push(datalocalStorage);
-  console.log(datalocalStorage);
-  localStorage[keyStorage] = JSON.stringify(dataStorage);
-}
+// // Добавляет в  localStorage
+// function updateStorage(datalocalStorage, keyStorage) {
+//   const dataStorage = [];
+//   dataStorage.push(datalocalStorage);
+//   console.log(datalocalStorage);
+//   localStorage[keyStorage] = JSON.stringify(dataStorage);
+// }
 
-// После рендеринга - устанавливает слушатель
-export function listenerModalBtn() {
-  const btnAddWatched = document.querySelector('.card__btn-watched');
-  btnAddWatched.addEventListener('click', addsWatched);
+// // После рендеринга - устанавливает слушатель
+// export function listenerModalBtn() {
+//   const btnAddWatched = document.querySelector('.card__btn-watched');
+//   btnAddWatched.addEventListener('click', addsWatched);
 
-  const btnAddQueue = document.querySelector('.card__btn-que');
-  btnAddQueue.addEventListener('click', addsQueue);
-  storageСheckWatched();
-  storageСheckQueue();
-}
+//   const btnAddQueue = document.querySelector('.card__btn-que');
+//   btnAddQueue.addEventListener('click', addsQueue);
+//   storageСheckWatched();
+//   storageСheckQueue();
+// }
 
-//Проверка статуса кнопок в зависимости от наличия в хранилище и зменение названия
-function storageСheckWatched() {
-  const linsk = searchLinks();
-  const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
-  const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
-  if (movieStorageData === null) {
-    console.log('No data in movie storage');
-    return;
-  }
-  if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === watched) {
-    linsk.btnWatched.textContent = buttonLabelWatchedRemove;
-  } else {
-    linsk.btnWatched.textContent = buttonLabelWatchedAdd;
-  }
-}
+// //Проверка статуса кнопок в зависимости от наличия в хранилище и зменение названия
+// function storageСheckWatched() {
+//   const linsk = searchLinks();
+//   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
+//   const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
+//   if (movieStorageData === null) {
+//     console.log('No data in movie storage');
+//     return;
+//   }
+//   if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === watched) {
+//     linsk.btnWatched.textContent = buttonLabelWatchedRemove;
+//   } else {
+//     linsk.btnWatched.textContent = buttonLabelWatchedAdd;
+//   }
+// }
 
-function storageСheckQueue() {
-  const linsk = searchLinks();
-  const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
-  const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
-  if (!movieStorageData) {
-    console.log('No data at queue check');
-    return;
-  }
-  if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === queue) {
-    console.log('some data at queue check');
+// function storageСheckQueue() {
+//   const linsk = searchLinks();
+//   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
+//   const movieStorageData = JSON.parse(localStorage.getItem(idCard)); // данние из хранилищя
+//   if (!movieStorageData) {
+//     console.log('No data at queue check');
+//     return;
+//   }
+//   if (movieStorageData[0].id === idCard && movieStorageData[0].librarySection === queue) {
+//     console.log('some data at queue check');
 
-    linsk.btnQueue.textContent = buttonLabelQueueRemove;
-  } else {
-    linsk.btnQueue.textContent = buttonLabelQueuedAdd;
-  }
-}
+//     linsk.btnQueue.textContent = buttonLabelQueueRemove;
+//   } else {
+//     linsk.btnQueue.textContent = buttonLabelQueuedAdd;
+//   }
+// }
 
-// Кнопка - работа с хранилищем (добавление)
-function addsWatched() {
-  console.log('attempted adding a film to watched');
+// // Кнопка - работа с хранилищем (добавление)
+// function addsWatched() {
+//   console.log('attempted adding a film to watched');
 
-  const linsk = searchLinks();
-  let genresStrong = linsk.dataGenres.textContent;
-  genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
-  //console.log(genresStrong);
+//   const linsk = searchLinks();
+//   let genresStrong = linsk.dataGenres.textContent;
+//   genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
+//   //console.log(genresStrong);
 
-  //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
-  //console.log(yearData);
+//   //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
+//   //console.log(yearData);
 
-  const datalocalStorage = {
-    id: linsk.dataId.getAttribute('data-action'),
-    //release_date: yearData,
-    title: linsk.dataImg.getAttribute('alt'),
-    poster_path: linsk.dataImg.getAttribute('src'),
-    vote_average: linsk.dataAverage.textContent,
-    vote_count: linsk.dataCount.textContent,
-    popularity: linsk.dataPopularity.textContent,
-    original_title: linsk.dataOriginal.textContent,
-    genres: { name: genresStrong },
-    overview: linsk.dataOverview.textContent,
-    librarySection: watched,
-  };
+//   const datalocalStorage = {
+//     id: linsk.dataId.getAttribute('data-action'),
+//     //release_date: yearData,
+//     title: linsk.dataImg.getAttribute('alt'),
+//     poster_path: linsk.dataImg.getAttribute('src'),
+//     vote_average: linsk.dataAverage.textContent,
+//     vote_count: linsk.dataCount.textContent,
+//     popularity: linsk.dataPopularity.textContent,
+//     original_title: linsk.dataOriginal.textContent,
+//     genres: { name: genresStrong },
+//     overview: linsk.dataOverview.textContent,
+//     librarySection: watched,
+//   };
 
-  const keyStorage = datalocalStorage.id;
-  if (linsk.btnWatched.textContent != buttonLabelWatchedRemove) {
-    updateStorage(datalocalStorage, keyStorage);
-  } else {
-    deleteStoragData();
-    linsk.btnWatched.textContent = buttonLabelWatchedAdd;
-  }
-  storageСheckWatched();
-  storageСheckQueue();
-}
+//   const keyStorage = datalocalStorage.id;
+//   if (linsk.btnWatched.textContent != buttonLabelWatchedRemove) {
+//     updateStorage(datalocalStorage, keyStorage);
+//   } else {
+//     deleteStoragData();
+//     linsk.btnWatched.textContent = buttonLabelWatchedAdd;
+//   }
+//   storageСheckWatched();
+//   storageСheckQueue();
+// }
 
-//////////// Кнопка "add to queue" -  добавить в очередь
-function addsQueue() {
-  const linsk = searchLinks();
-  let genresStrong = linsk.dataGenres.textContent;
-  genresStrong = genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
-  //   console.log(genresStrong);
+// //////////// Кнопка "add to queue" -  добавить в очередь
+// function addsQueue() {
+//   const linsk = searchLinks();
+//   let genresStrong = linsk.dataGenres.textContent;
+//   genresStrong = genresStrong.replace(/\s+/g, ' ').trim().split(' ').join(', ');
+//   //   console.log(genresStrong);
 
-  //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
-  //   console.log(yearData);
+//   //const yearData = linsk.dataRelease.getAttribute('data-year').split('-')[0];
+//   //   console.log(yearData);
 
-  const datalocalStorage = {
-    id: linsk.dataId.getAttribute('data-action'),
-    //release_date: yearData,
-    title: linsk.dataImg.getAttribute('alt'),
-    poster_path: linsk.dataImg.getAttribute('src'),
-    vote_average: linsk.dataAverage.textContent,
-    vote_count: linsk.dataCount.textContent,
-    popularity: linsk.dataPopularity.textContent,
-    original_title: linsk.dataOriginal.textContent,
-    genres: { name: genresStrong },
-    overview: linsk.dataOverview.textContent,
-    librarySection: queue,
-  };
+//   const datalocalStorage = {
+//     id: linsk.dataId.getAttribute('data-action'),
+//     //release_date: yearData,
+//     title: linsk.dataImg.getAttribute('alt'),
+//     poster_path: linsk.dataImg.getAttribute('src'),
+//     vote_average: linsk.dataAverage.textContent,
+//     vote_count: linsk.dataCount.textContent,
+//     popularity: linsk.dataPopularity.textContent,
+//     original_title: linsk.dataOriginal.textContent,
+//     genres: { name: genresStrong },
+//     overview: linsk.dataOverview.textContent,
+//     librarySection: queue,
+//   };
 
-  const keyStorage = datalocalStorage.id;
-  if (linsk.btnQueue.textContent != buttonLabelQueueRemove) {
-    updateStorage(datalocalStorage, keyStorage);
-  } else {
-    deleteStoragData();
-    linsk.btnQueue.textContent = buttonLabelQueuedAdd;
-  }
-  storageСheckQueue();
-  storageСheckWatched();
-}
+//   const keyStorage = datalocalStorage.id;
+//   if (linsk.btnQueue.textContent != buttonLabelQueueRemove) {
+//     updateStorage(datalocalStorage, keyStorage);
+//   } else {
+//     deleteStoragData();
+//     linsk.btnQueue.textContent = buttonLabelQueuedAdd;
+//   }
+//   storageСheckQueue();
+//   storageСheckWatched();
+// }
 
-//////// Удаление из хранилища
-function deleteStoragData() {
-  const linsk = searchLinks();
-  const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
-  if (
-    linsk.btnWatched.textContent === buttonLabelWatchedRemove ||
-    linsk.btnQueue.textContent === buttonLabelQueueRemove
-  ) {
-    localStorage.removeItem(idCard);
-  }
-}
+// //////// Удаление из хранилища
+// function deleteStoragData() {
+//   const linsk = searchLinks();
+//   const idCard = linsk.dataId.getAttribute('data-action'); // id  в карточке
+//   if (
+//     linsk.btnWatched.textContent === buttonLabelWatchedRemove ||
+//     linsk.btnQueue.textContent === buttonLabelQueueRemove
+//   ) {
+//     localStorage.removeItem(idCard);
+//   }
+// }
