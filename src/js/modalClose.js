@@ -1,4 +1,5 @@
 import movieUpdadeRender from './addWathed';
+import movieUpdadeRender2 from './addQueue';
 
 const backdrop = document.querySelector('.backdrop');
 const body = document.querySelector('body');
@@ -15,6 +16,7 @@ function onBackdropClick(event) {
     backdrop.classList.add('is-hidden');
     body.style.overflow = 'visible';
     movieUpdadeRender();
+    movieUpdadeRender2();
   }
 }
 
@@ -23,6 +25,7 @@ export default function onEscBtnClick(event) {
     onCloseModal(event);
   }
   movieUpdadeRender();
+  movieUpdadeRender2();
 }
 
 ///////////////////////////////////////////////////////////////////////////

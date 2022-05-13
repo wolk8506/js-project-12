@@ -1,12 +1,9 @@
+// Movied;
+let openMovied = false;
 let renderMovied = '';
 let btnDelMov = false;
 let movieWatched = JSON.parse(localStorage.getItem('movieWatched'));
-
-// if (movieWatched === null) {
-//   localStorage.setItem('movieWatched', JSON.stringify([]));
-// }
-
-let count = 0;
+// let count = 0;
 
 const btnAdd = document.querySelector('.js-watched');
 const movieModal = document.querySelector('.movie-modal-id');
@@ -90,17 +87,29 @@ function render({ original_title, poster_path, genres, release_date, vote_averag
       <li class="movie-vote_average">${vote_average.toFixed(1)}</li>
       </ul>
       </a>`;
-  count++;
+  // count++;
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const moviePogination = document.querySelector('.movie-pogination');
 const movie = document.querySelector('.movie');
 const library = document.querySelector('.nav__list-text--home');
 const btnWathed = document.querySelector('.js-wathed-header');
+const btnQueue = document.querySelector('.js-queue-header');
+
+btnQueue.addEventListener('click', event => {
+  event.preventDefault();
+  openMovied = false;
+  btnDelMov = false;
+
+  activBtnHeader();
+});
 
 btnWathed.addEventListener('click', event => {
   event.preventDefault();
   btnDelMov = true;
+  openMovied = true;
+
+  activBtnHeader();
   movie.innerHTML = renderMovied;
   moviePogination.innerHTML = '';
 });
@@ -108,9 +117,27 @@ btnWathed.addEventListener('click', event => {
 library.addEventListener('click', event => {
   event.preventDefault();
   btnDelMov = true;
+  openMovied = true;
+
+  activBtnHeader();
   movie.innerHTML = renderMovied;
   moviePogination.innerHTML = '';
 });
+
+function activBtnHeader() {
+  if (openMovied === true) {
+    btnWathed.style.background = '#FF6B01';
+    btnWathed.style.border = '#FF6B01';
+    btnQueue.style.background = 'inherit';
+    btnQueue.style.border = '1px solid #FFFFFF';
+  } else {
+    btnWathed.style.background = 'inherit';
+    btnWathed.style.border = '1px solid #FFFFFF';
+    btnQueue.style.background = '#FF6B01';
+    btnQueue.style.border = '#FF6B01';
+  }
+}
+
 // !!!!!!!!!!!!удаление из массива
 const home = document.querySelector('.nav__list-text');
 
@@ -131,7 +158,8 @@ home.addEventListener('click', event => {
 })();
 
 export default function movieUpdadeRender() {
-  if (btnDelMov === true) {
+  if (btnDelMov === true && openMovied === true) {
     movie.innerHTML = renderMovied;
+    // console.log('m1');
   }
 }
