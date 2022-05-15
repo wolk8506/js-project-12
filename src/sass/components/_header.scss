@@ -70,13 +70,14 @@
   list-style: none;
 
   &-text {
+    display: block;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 12px;
     color: var(--text-color);
   }
 
-  &-item::after {
+  &-text::after {
     content: '';
     height: 3px;
     width: 100%;
@@ -88,8 +89,8 @@
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  &-item:hover::after,
-  &-item:focus::after {
+  &-text:hover::after,
+  &-text:focus::after {
     opacity: 1;
   }
 
@@ -102,7 +103,7 @@
 
 }
 
-.nav__list-item--activ.nav__list-item::after{
+.nav__list-text--activ.nav__list-text::after{
   opacity: 1;
 }
 
