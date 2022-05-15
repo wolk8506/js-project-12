@@ -83,6 +83,13 @@ h2, p, ul
     padding: 5px 5px 0px 5px;
     color: #000000;
 }
+.darkmode--activated .movie-title {
+  color: rgb(25, 188, 20);
+}
+
+.darkmode--activated .movie-img {
+  background-color: rgb(255, 255, 255);
+}
 
 .movie-img{
   /*   height: 449px;
