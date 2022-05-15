@@ -62,7 +62,10 @@ function modalMovieData({
   overview,
   id,
 }) {
-  movieImage.src = `https://image.tmdb.org/t/p/w500${poster_path}`;
+  movieImage.src =
+    poster_path !== null
+      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+      : 'https://cdn.pixabay.com/photo/2012/04/14/15/43/film-34332_960_720.png';
   movieTitle.innerHTML = `${original_title}`;
   movieVoteOrange.innerHTML = `${vote_average}`;
   movieVoteGrey.innerHTML = `${vote_count}`;
