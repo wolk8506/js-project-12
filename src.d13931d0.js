@@ -108,4 +108,4 @@ const t=document.querySelector(".js-heder-home"),s=document.querySelector(".js-l
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/initLS"),require("./js/moviePopular"),require("./js/modalClose"),require("./js/onScroll"),require("./js/themeMode"),require("./js/modal"),require("./js/home"),require("./js/logo"),require("./js/spinner"),require("./js/addMovied"),require("./js/addQueue"),require("./js/btnHeaderActiv");
 },{"./sass/main.scss":"clu1","./js/initLS":"ivfh","./js/moviePopular":"ZSzy","./js/modalClose":"BkZ8","./js/onScroll":"Ze3J","./js/themeMode":"cQyN","./js/modal":"RSqK","./js/home":"nqs3","./js/logo":"yXcY","./js/spinner":"Sc1o","./js/addMovied":"Z8kE","./js/addQueue":"xyjw","./js/btnHeaderActiv":"CCfs"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-12/src.74f9605f.js.map
+//# sourceMappingURL=/js-project-12/src.d13931d0.js.map
