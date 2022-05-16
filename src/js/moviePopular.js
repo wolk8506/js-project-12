@@ -1,5 +1,6 @@
 import { Spinner } from 'spin.js';
 import opts from './spinner';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 var target = document.querySelector('body');
 var spinner = new Spinner(opts);
@@ -141,9 +142,26 @@ function movieSearch(page) {
       typeRequest = false;
       renderPagination(response.data.total_pages);
       spinner.stop();
-      return render(response.data.results);
-    });
+      if (response.data.results.length === 0) {
+        Notify.failure('Search result not successful. Enter the correct movie name');        
+      }
+      return render(response.data.results);   
+    })
+    .catch (error =>{
+      console.log(error);   
+    }) 
 }
+/* if (response.data.results.length === 0) {
+  Notify.failure('Search result not successful. Enter the correct movie name');        
+}
+return render(response.data.results) ;
+})
+.catch (error =>{
+ 
+  console.log(error);
+  
+})     
+} */
 // *****  Рендер пагинации  *************
 const moviePogination = document.querySelector('.movie-pogination');
 let pagesPogination = 0;
