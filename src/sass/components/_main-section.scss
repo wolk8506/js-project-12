@@ -5,6 +5,7 @@ h2, p, ul
 }
 .movie-modal-id {
     padding: 60px 0px 60px;
+    min-height: 100%;
     @media screen and (max-width: 768px) {
         padding: 20px 0px 40px;
       }
