@@ -65,6 +65,7 @@ movieIdF(movieQueue);
 
 function movieIdF(movieId) {
   renderMovied = '';
+
   movieId.map(m =>
     axios.get(`${BASE_URL}movie/${m}?api_key=${API_KEY}&language=en-US`).then(response => {
       render(response.data);
@@ -97,17 +98,24 @@ function render({ original_title, poster_path, genres, release_date, vote_averag
       <li class="movie-vote_average">${vote_average.toFixed(1)}</li>
       </ul>
       </a>`;
-  // count++;
+
+  if (4 === Number(localStorage.getItem('pageResetLoad'))) {
+    movie.innerHTML = renderMovied;
+    // console.log('q1');
+  }
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const moviePogination = document.querySelector('.movie-pogination');
 const movie = document.querySelector('.movie');
 const library = document.querySelector('.js-queue-header');
 const btnWathed = document.querySelector('.js-wathed-header');
+const library2 = document.querySelector('.nav__list-text--home');
 
 btnWathed.addEventListener('click', event => {
   event.preventDefault();
   openQueue = false;
+  let pageResetLoad = localStorage.setItem(`pageResetLoad`, `3`);
+  // console.log('m2');
 });
 
 library.addEventListener('click', event => {
@@ -117,6 +125,9 @@ library.addEventListener('click', event => {
 
   movie.innerHTML = renderMovied;
   moviePogination.innerHTML = '';
+
+  let pageResetLoad;
+  pageResetLoad = localStorage.setItem(`pageResetLoad`, `4`);
 });
 
 // !!!!!!!!!!!!удаление из массива
@@ -141,6 +152,27 @@ home.addEventListener('click', event => {
 export default function movieUpdadeRender2() {
   if (btnDelMov === true && openQueue === true) {
     movie.innerHTML = renderMovied;
-    // console.log('m2');
+    // console.log('q4');
   }
+
+  if (4 === Number(localStorage.getItem('pageResetLoad'))) loadPage();
+}
+
+export function loadPage() {
+  // console.log(26);
+
+  library2.click();
+  setTimeout(() => {
+    let pageResetLoad = localStorage.setItem(`pageResetLoad`, `4`);
+    // console.log('m2');
+    activBtnHeader();
+    movie.innerHTML = renderMovied;
+  }, 70);
+}
+
+function activBtnHeader() {
+  btnWathed.style.background = 'inherit';
+  btnWathed.style.border = '1px solid #FFFFFF';
+  library.style.background = '#FF6B01';
+  library.style.border = '#FF6B01';
 }

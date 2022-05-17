@@ -94,6 +94,10 @@ function render({ original_title, poster_path, genres, release_date, vote_averag
       <li class="movie-vote_average">${vote_average.toFixed(1)}</li>
       </ul>
       </a>`;
+  if (3 === Number(localStorage.getItem('pageResetLoad'))) {
+    movie.innerHTML = renderMovied;
+    // console.log('m1');
+  }
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const moviePogination = document.querySelector('.movie-pogination');
@@ -124,7 +128,10 @@ library.addEventListener('click', event => {
   event.preventDefault();
   btnDelMov = true;
   openMovied = true;
-
+  setTimeout(() => {
+    let pageResetLoad = localStorage.setItem(`pageResetLoad`, `3`);
+    // console.log('m2');
+  }, 50);
   activBtnHeader();
   movie.innerHTML = renderMovied;
   moviePogination.innerHTML = '';
@@ -166,5 +173,16 @@ home.addEventListener('click', event => {
 export default function movieUpdadeRender() {
   if (btnDelMov === true && openMovied === true) {
     movie.innerHTML = renderMovied;
+    // console.log('m4');
   }
+  if (3 === Number(localStorage.getItem('pageResetLoad'))) {
+    loadPage();
+  }
+}
+
+export function loadPage() {
+  // console.log(25);
+  // event.preventDefault();
+  // movie.innerHTML = renderMovied;
+  library.click();
 }

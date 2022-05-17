@@ -5,9 +5,11 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 var target = document.querySelector('body');
 var spinner = new Spinner(opts);
 
+let pageResetLoad;
+
 const movie = document.querySelector('.movie');
 let typeRequest = '';
-let count = 1;
+let count = Number(localStorage.getItem('currentPage'));
 const axios = require('axios');
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -39,15 +41,32 @@ homePageHome.addEventListener('click', homePage);
 function homePage() {
   count = 1;
   moviePopular();
+
+  pageResetLoad = localStorage.setItem(`pageResetLoad`, `1`);
 }
 // !!!!!!!!!!!!
 function currentPage(page) {
+  // console.log('page');
   return localStorage.setItem(`currentPage`, `${page}`);
 }
-
 movieGenre();
+// !!!!!!!! start  !!!!!!!!!!!!!!!
+
+// ***************
+export default function startHP() {
+  if (1 === Number(localStorage.getItem('pageResetLoad'))) {
+    moviePopular(count);
+  } else if (2 === Number(localStorage.getItem('pageResetLoad'))) {
+    // count = count + 1;
+    movieSearch(count);
+  }
+}
+
+// moviePopular();
+// !!!!!!!!!!!!!  end !!!!!!!!!!!!!!!!
+
 // *****  Запрос популярных фильмов ****************************************
-export default function moviePopular(numberPage = 1) {
+function moviePopular(numberPage) {
   spinner.spin(target);
   return axios
     .get(`${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${numberPage}`)
@@ -59,17 +78,9 @@ export default function moviePopular(numberPage = 1) {
       render(response.data.results);
       spinner.stop();
       currentPage(numberPage);
+      // console.log('p1');
     });
 }
-function startHP() {
-  count = Number(localStorage.getItem('currentPage'));
-  if (count === 0) {
-    count = 1;
-  }
-  moviePopular(count);
-}
-startHP();
-// moviePopular();
 
 // *****  Запрос жанров фильмоы  *******************************************
 function movieGenre() {
@@ -119,7 +130,7 @@ function render(markup) {
 // *****  Поиск по названию фильма  *****
 
 const input = document.querySelector('.search-form');
-let QUERY_PROMT = '';
+let QUERY_PROMT = localStorage.getItem('QUERY_PROMT');
 input.addEventListener('input', inputSearch);
 input.addEventListener('submit', loadImages);
 
@@ -129,27 +140,39 @@ function loadImages(e) {
   movieSearch();
 }
 function inputSearch() {
-  QUERY_PROMT = input.searchQuery.value;
+  localStorage.setItem(`QUERY_PROMT`, input.searchQuery.value);
+  // QUERY_PROMT = input.searchQuery.value;
+  // localStorage.getItem('pageResetLoad');
 }
 
 function movieSearch(page) {
   spinner.spin(target);
   return axios
     .get(
-      `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY_PROMT}&page=1&include_adult=false&page=${page}`,
+      `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${localStorage.getItem(
+        'QUERY_PROMT',
+      )}&page=1&include_adult=false&page=${page}`,
     )
     .then(response => {
       typeRequest = false;
       renderPagination(response.data.total_pages);
       spinner.stop();
-      if (response.data.results.length === 0) {
-        Notify.failure('Search result not successful. Enter the correct movie name');        
+      if (page === undefined) {
+        // currentPage(1);
+        // console.log('p2');
+      } else {
+        currentPage(page);
+        // console.log('p3');
       }
-      return render(response.data.results);   
+      pageResetLoad = localStorage.setItem(`pageResetLoad`, `2`);
+      if (response.data.results.length === 0) {
+        Notify.failure('Search result not successful. Enter the correct movie name');
+      }
+      return render(response.data.results);
     })
-    .catch (error =>{
-      console.log(error);   
-    }) 
+    .catch(error => {
+      console.log(error);
+    });
 }
 /* if (response.data.results.length === 0) {
   Notify.failure('Search result not successful. Enter the correct movie name');        
