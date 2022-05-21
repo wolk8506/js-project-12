@@ -20,6 +20,7 @@
             <li class="modal-short-info__name-item">Popularity</li>
             <li class="modal-short-info__name-item">Original Title</li>
             <li class="modal-short-info__name-item">Genre</li>
+            <li class="modal-short-info__name-item">Trailer</li>
           </ul>
 
           <ul class="modal-short-info__description-list list">
@@ -41,6 +42,12 @@
               class="modal-short-info__description-item modal-short-info__description-item--ganre card__item-genres"
             >
               Western
+            </li>
+            <li
+              class="modal-short-info__description-item modal-short-info__description-item--ganre"
+            >
+              <a class="js-modal-trailer" href="#" onclick="event.preventDefault()">YouTube</a>
+             
             </li>
           </ul>
         </div>
@@ -78,6 +85,23 @@
           </li>
         </ul>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="backdrop2 is-hidden">
+  <div class="modal2">
+    <button type="button" class="modal-close-btn2 close"></button>
+ <iframe
+                id="player"
+                type="text/html"
+                width="640"
+                height="360"
+              
+                src="http://www.youtube.com/embed/vG2FHtKxANE?enablejsapi=1&origin=http://example.com"
+                frameborder="0"
+              ></iframe>
     </div>
   </div>
 </div>

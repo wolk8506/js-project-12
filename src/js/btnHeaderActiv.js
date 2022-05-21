@@ -1,54 +1,50 @@
-const btnHome = document.querySelector('.js-heder-home');
-const btnLibrary = document.querySelector('.js-library');
-const btnLogo = document.querySelector('.logo');
+import { refs } from './refs';
+import { homePage } from './moviePopular';
 
-btnHome.addEventListener('click', btnActivHeaderHome);
-btnLibrary.addEventListener('click', btnActivHeaderLibrsry);
-btnLogo.addEventListener('click', btnActivHeaderLogo);
+refs.btnHome.addEventListener('click', btnActivHeaderHome);
+refs.btnLibrary.addEventListener('click', btnActivHeaderLibrsry);
+refs.btnLogo.addEventListener('click', btnActivHeaderHome);
 
-function btnActivHeaderLogo() {
-  if (btnLibrary.classList.contains('nav__list-text--activ')) {
-    btnHome.classList.toggle('nav__list-text--activ');
-    btnLibrary.classList.toggle('nav__list-text--activ');
-  }
-
-  btnHome.click();
-}
 function btnActivHeaderHome() {
-  if (btnLibrary.classList.contains('nav__list-text--activ')) {
-    btnHome.classList.toggle('nav__list-text--activ');
-    btnLibrary.classList.toggle('nav__list-text--activ');
+  if (refs.btnLibrary.classList.contains('nav__list-text--activ')) {
+    refs.btnHome.classList.toggle('nav__list-text--activ');
+    refs.btnLibrary.classList.toggle('nav__list-text--activ');
   }
+  refs.refHeader.classList.add('header');
+  refs.refHeader.classList.remove('header-library');
+  refs.refSearchForm.style.display = 'flex';
+  refs.refBtnGroup.style.display = 'none';
+  homePage();
 }
+
 function btnActivHeaderLibrsry() {
-  if (btnHome.classList.contains('nav__list-text--activ')) {
-    btnHome.classList.toggle('nav__list-text--activ');
-    btnLibrary.classList.toggle('nav__list-text--activ');
+  if (refs.btnHome.classList.contains('nav__list-text--activ')) {
+    refs.btnHome.classList.toggle('nav__list-text--activ');
+    refs.btnLibrary.classList.toggle('nav__list-text--activ');
   }
+  refs.refHeader.classList.remove('header');
+  refs.refHeader.classList.add('header-library');
+  refs.refSearchForm.style.display = 'none';
+  refs.refBtnGroup.style.display = 'flex';
 }
 
-// * проверка загружаемой страницы *
-let pageResetLoad = Number(localStorage.getItem('pageResetLoad'));
-if (pageResetLoad === null) {
-  pageResetLoad.setItem('pageResetLoad', 1);
-}
+// // * проверка загружаемой страницы *
+// let pageResetLoad = Number(localStorage.getItem('pageResetLoad'));
+// if (pageResetLoad === null) {
+//   pageResetLoad.setItem('pageResetLoad', 1);
+// }
 
-import startHP from './moviePopular';
-// import movieUpdadeRender from './moviePopular';
-import movieUpdadeRender from './addMovied';
-import movieUpdadeRender2 from './addQueue';
+// import startHP from './moviePopular';
+// import libraryPageActiv from './addMovied';
 
-if (pageResetLoad === 1) {
-  // console.log(1);
-  startHP();
-} else if (pageResetLoad === 2) {
-  startHP();
-} else if (pageResetLoad === 3) {
-  // console.log(3);
-  movieUpdadeRender();
-  btnActivHeaderLibrsry();
-} else if (pageResetLoad === 4) {
-  // console.log(4);
-  movieUpdadeRender2();
-  btnActivHeaderLibrsry();
-}
+// if (pageResetLoad === 1) {
+//   startHP();
+// } else if (pageResetLoad === 2) {
+//   startHP();
+// } else if (pageResetLoad === 3) {
+//   libraryPageActiv();
+//   btnActivHeaderLibrsry();
+// } else if (pageResetLoad === 4) {
+//   libraryPageActiv();
+//   btnActivHeaderLibrsry();
+// }

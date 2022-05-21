@@ -1,5 +1,4 @@
 import movieUpdadeRender from './addMovied';
-import movieUpdadeRender2 from './addQueue';
 
 const backdrop = document.querySelector('.backdrop');
 const body = document.querySelector('body');
@@ -9,6 +8,7 @@ function onCloseModal() {
   window.removeEventListener('keydown', onEscBtnClick);
   backdrop.classList.add('is-hidden');
   body.style.overflow = 'visible';
+  movieUpdadeRender();
 }
 
 function onBackdropClick(event) {
@@ -16,7 +16,6 @@ function onBackdropClick(event) {
     backdrop.classList.add('is-hidden');
     body.style.overflow = 'visible';
     movieUpdadeRender();
-    movieUpdadeRender2();
   }
 }
 
@@ -25,7 +24,6 @@ export default function onEscBtnClick(event) {
     onCloseModal(event);
   }
   movieUpdadeRender();
-  movieUpdadeRender2();
 }
 
 ///////////////////////////////////////////////////////////////////////////

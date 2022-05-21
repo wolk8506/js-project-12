@@ -3,10 +3,10 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://wolk8506.github.io/js-project-12/",
+  "homepage": "https://wolk8506.github.io/js-project-radio/",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /js-project-12/"
+    "build": "parcel build src/*.html --public-url /js-project-radio/"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "notiflix": "^3.2.5",
+    "refs": "^0.9.7",
     "spin.js": "^4.1.1"
   }
 }
