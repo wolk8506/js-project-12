@@ -27,24 +27,3 @@ function btnActivHeaderLibrsry() {
   refs.refSearchForm.style.display = 'none';
   refs.refBtnGroup.style.display = 'flex';
 }
-
-// // * проверка загружаемой страницы *
-// let pageResetLoad = Number(localStorage.getItem('pageResetLoad'));
-// if (pageResetLoad === null) {
-//   pageResetLoad.setItem('pageResetLoad', 1);
-// }
-
-// import startHP from './moviePopular';
-// import libraryPageActiv from './addMovied';
-
-// if (pageResetLoad === 1) {
-//   startHP();
-// } else if (pageResetLoad === 2) {
-//   startHP();
-// } else if (pageResetLoad === 3) {
-//   libraryPageActiv();
-//   btnActivHeaderLibrsry();
-// } else if (pageResetLoad === 4) {
-//   libraryPageActiv();
-//   btnActivHeaderLibrsry();
-// }
